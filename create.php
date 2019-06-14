@@ -1,23 +1,21 @@
 <?php
 require 'db.php';
 $message = '';
-if (isset ($_POST['name']) && isset($_POST['registration_code']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['comment']) ) {
+if (isset ($_POST['name']) && isset($_POST['registration_code']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['comment'])) {
   $name = $_POST['name'];
   $registration_code = $_POST['registration_code'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
   $comment = $_POST['comment'];
-  $sql = 'INSERT INTO company(name, registration_code, email, phone, comment) VALUES(:name, :registration_code, :email, :phone, :comment)';
+  $sql = 'INSERT INTO companies(name, registration_code, email, phone, comment) VALUES(:name, :registration_code, :email, :phone, :comment)';
   $statement = $connection->prepare($sql);
-  if ($statement->execute([':name' => $name, ':registration_code' => $registration_code, ':email' => $email, ':phone' => $phone, ':comment' => $comment,])) {
+  if ($statement->execute([':name' => $name, ':registration_code' => $registration_code, ':email' => $email, ':phone' => $phone, ':comment' => $comment])) {
     $message = 'data inserted successfully';
   }
 
 
 
 }
-
-
  ?>
 <?php require 'header.php'; ?>
 <div class="container">
@@ -46,15 +44,14 @@ if (isset ($_POST['name']) && isset($_POST['registration_code']) && isset($_POST
         </div>
         <div class="form-group">
           <label for="phone">Phone</label>
-          <input type="text" name="phone" id="phone" class="form-control">
+          <input type="tel" name="phone" id="phone" class="form-control">
         </div>
-
         <div class="form-group">
           <label for="comment">Comment</label>
-          <input type="text" name="comment" id="comment" class="form-control">
+          <textarea class="form-control" name="comment" rows="5" id="comment" placeholder="Maximum 500 simbols"></textarea>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-info">Add Company</button>
+          <button type="submit" class="btn btn-info">Add company to a list</button>
         </div>
       </form>
     </div>

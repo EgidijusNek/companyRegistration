@@ -1,9 +1,9 @@
 <?php
 require 'db.php';
-$sql = 'SELECT * FROM company';
+$sql = 'SELECT * FROM companies';
 $statement = $connection->prepare($sql);
 $statement->execute();
-$company = $statement->fetchAll(PDO::FETCH_OBJ);
+$companies = $statement->fetchAll(PDO::FETCH_OBJ);
  ?>
 <?php require 'header.php'; ?>
 <div class="container">
@@ -22,17 +22,17 @@ $company = $statement->fetchAll(PDO::FETCH_OBJ);
           <th>Comment</th>
           <th>Action</th>
         </tr>
-        <?php foreach($company as $companies): ?>
+        <?php foreach($companies as $company): ?>
           <tr>
-            <td><?= $companies->id; ?></td>
-            <td><?= $companies->name; ?></td>
-            <td><?= $companies->registration_code; ?></td>
-            <td><?= $companies->email; ?></td>
-            <td><?= $companies->phone; ?></td>
-            <td><?= $companies->comment; ?></td>
+            <td><?= $company->id; ?></td>
+            <td><?= $company->name; ?></td>
+            <td><?= $company->registration_code; ?></td>
+            <td><?= $company->email; ?></td>
+            <td><?= $company->phone; ?></td>
+            <td><?= $company->comment; ?></td>
             <td>
-              <a href="edit.php?id=<?= $companies->id ?>" class="btn btn-info">Edit</a>
-              <a onclick="return confirm('Are you sure you want to delete this entry?')" href="delete.php?id=<?= $person->id ?>" class='btn btn-danger'>Delete</a>
+              <a href="edit.php?id=<?= $company->id ?>" class="btn btn-info">Edit</a>
+              <a onclick="return confirm('Are you sure you want to delete this entry?')" href="delete.php?id=<?= $company->id ?>" class='btn btn-danger'>Delete</a>
             </td>
           </tr>
         <?php endforeach; ?>
